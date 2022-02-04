@@ -148,7 +148,7 @@ def show_exam_result(request, course_id, submission_id):
     choices = submission.choices.all()
     context['choices'] = choices
     lesson_sel = Question.objects.get(id=choices[0].question.id).lesson
-    context['questions'] = Question.objects.filter(lesson=lesson_sel)
+    context['questions'] = Question.objects.filter(courses=course)
 
     user_score = 0
     possible_score = 0
