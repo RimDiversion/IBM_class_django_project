@@ -159,12 +159,11 @@ def show_exam_result(request, course_id, submission_id):
         score = 0
         
         for choice in question.choice_set.all():
-            print(choice)
             if choice in choices:
                 if choice.is_correct:
-                    score += 1
+                    score += question.is_get_score(choices)
                 else:
-                    score = score - .5 if score > 0 else 0
+                    score -= question.is_get_score(choices)
 
         user_score += (score / total_points) * question.grade
 
